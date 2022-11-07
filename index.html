@@ -1,183 +1,36 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Simplex</title>
-		<meta charset="utf-8" />
-		<link rel="stylesheet" href="libs/bootstrap-3.3.5-dist/css/bootstrap.min.css">
-		<link rel="stylesheet" href="libs/bootstrap-3.3.5-dist/css/bootstrap-theme.min.css">
-	</head>
-	<body>
-		<style>
-		</style>
-		<style id="min_width">
-			.min_width_in {
-				min-width: 80px;
-			}
-		</style>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-2 col-md-offset-10">
-					<select id="language" class="form-control">
-						<option value="en_us">English</option>
-						<option value="pt_br">Português</option>
-					</select>
-				</div>
-			</div>
-			<div class="row">
-				<div class="page-header">
-					<h1><translate trans="title">Simplex</translate></h1>
-				</div>
-			</div>
-			<div class="row">
-				<div class="row">
-					<div class="row">
-						<div class="page-header">
-							<h3><translate trans="tools">Ferramentas</translate></h3>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<fieldset>
-							<legend><translate trans="variables">Variaveis</translate></legend>
-							<div class="col-md-6">
-								<p>
-									<button id="add_column_btn" class="btn btn-info btn-block"><span class="glyphicon glyphicon-plus"></span></button>
-								</p>
-							</div>
-							<div class="col-md-6">
-								<p>
-									<button id="remove_column_btn" class="btn btn-info btn-block"><span class="glyphicon glyphicon-minus"></span></button>
-								</p>
-							</div>
-						</fieldset>
-					</div>
-					<div class="col-md-4">
-						<fieldset>
-							<legend><translate trans="constraints">Restrições</translate></legend>
-							<div class="col-md-6">
-								<p>
-									<button id="add_line_btn" class="btn btn-info btn-block"><span class="glyphicon glyphicon-plus"></button>
-								</p>
-							</div>
-							<div class="col-md-6">
-								<p>
-									<button id="remove_line_btn" class="btn btn-info btn-block"><span class="glyphicon glyphicon-minus"></button>
-								</p>
-							</div>
-						</fieldset>
-					</div>
-					<div class="col-md-4">
-						<div class="row">
-							<div class="col-md-6"><p><button id="calculate_simplex_btn" class="btn btn-info btn-block">
-								<translate trans="solve_lpp">Resolver</translate>
-							</button></p></div>
-							<div class="col-md-6"><p><button id="clear_solutions_btn" class="btn btn-info btn-block">
-								<translate trans="clear_solutions">Limpar solução</translate>
-							</button></p></div>
-						</div>
-						<div id="solve_msg" class="row"></div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="row">
-						<div class="page-header">
-							<h3><translate trans="lpp">Problema de programação linear</translate></h3>
-						</div>
-					</div>
-					<div class="row panel panel-info">
-						<div class="panel-heading toggler" data-target="#function">
-							<h4 class="panel-title"><translate trans="function">Função</translate></h4>
-						</div>
-						<div id="function" class="panel-body toggler-target">
-							<div class="col-md-2">
-								<table class="table">
-									<tr>
-										<th><translate trans="type">Tipo</translate></th>
-									</tr>
-									<tr>
-										<td>
-											<select id="kind_of_function" class="form-control">
-												<option value="min">min</option>
-												<option value="max">max</option>
-											</select>
-										</td>
-									</tr>
-								</table>
-							</div>
-							<div class="col-md-offset-2">
-								<table class="table">
-									<tr id="function_head">
-									</tr>
-									<tr id="function_variables">
-									</tr>
-								</table>
-							</div>
-						</div>
-					</div>
-					<div class="row panel panel-info">
-						<div class="panel-heading toggler" data-target="#constraints_body">
-							<h4 class="panel-title"><translate trans="constraints">Restrições</translate></h4>
-						</div>
-						<div id="constraints_body" class="panel-body toggler-target">
-							<div class="col-md-12">
-								<table class="table">
-									<thead id="constraints_head">
-									</thead>
-									<tbody id="constraints">
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="row">
-						<div id="solution_head" class="">
-							<div class="page-header">
-								<h3><translate trans="solutions">Soluções</translate></h3>
-							</div>
-						</div>
-					</div>
-					<div>
-						<div id="great_base" class="row"></div>
-						<div id="type_solution_msg" class="row"></div>
-						<div id="solutions" class="row">
-						</div>
-						<div class="row">
-							<div class="col-md-2">
-								<p><button id="next_solution" class="btn btn-info"><translate trans="next_solution">Proxima solução</translate></button></p>
-							</div>
-							<div id="next_solution_msg" class="col-md-10"></div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="row">
-						<div id="step_head" class="">
-							<div class="page-header">
-								<h3><translate trans="step_by_step">Passo a passo</translate></h3>
-							</div>
-						</div>
-					</div>
-					<div>
-						<div id="steps" class="row">
-						</div>
-						<div class="row">
-							<div class="col-md-2">
-								<p><button id="next_step" class="btn btn-info"><translate trans="next_step">Proxima etapa</translate></button></p>
-							</div>
-							<div id="next_step_msg" class="col-md-10"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<script src="libs/jquery-2.1.4/jquery.min.js"></script>
-		<script src="libs/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
-		<script src="libs/mathjs/math.js"></script>
-		<script src="simplex.js"></script>
-		<script src="graphic-manager.js"></script>
-		<script src="data-manager.js"></script>
-		<script src="languages.js"></script>
-		<script src="events.js"></script>
-	</body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    
+</head>
+<body>
+    <table id="table">
+        <tr>
+            <td>
+                Numero de variaveis: 
+                <input type="text" id="numVar">
+                Numero de restrições:
+                <input type="text" id="numConstraints">
+                <button type="button" id="checkFields-Button">Gerar</button>
+            </td>
+        </tr>
+        
+    </table>
+    <button type="button" id="simplexMain-Button">Rodar metodo</button>
+
+    <div id="steps"></div>
+    <div id="result"></div>
+
+    <script type="module" src="./methodGen.js"></script>
+    <script type="module" src="./table.js" ></script>
+    <script type="module" src="./solution.js" ></script>
+    <script type="module" src="./simplex.js" ></script>
+    <script type="module" src="./loadTableStep.js"></script>
+    <script type="module" src="./loadSimplexAnswer.js"></script>
+    <script type="module" src="./onLoadButton.js" ></script>
+</body>
 </html>
