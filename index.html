@@ -16,20 +16,28 @@
 		</style>
 		<div class="container">
 			<div class="row">
+				<div class="col-md-2 col-md-offset-10" hidden="hidden">
+					<select id="language" class="form-control">
+						<option value="pt_br">Português</option>
+						<option value="en_us">English</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
 				<div class="page-header">
-					<h1>Simplex</h1>
+					<h1><translate trans="title">Simplex</translate></h1>
 				</div>
 			</div>
 			<div class="row">
 				<div class="row">
 					<div class="row">
 						<div class="page-header">
-							<h3>Ferramentas</h3>
+							<h3><translate trans="tools">Ferramentas</translate></h3>
 						</div>
 					</div>
 					<div class="col-md-4">
 						<fieldset>
-							<legend>Variáveis</legend>
+							<legend><translate trans="variables">Variaveis</translate></legend>
 							<div class="col-md-6">
 								<p>
 									<button id="add_column_btn" class="btn btn-info btn-block"><span class="glyphicon glyphicon-plus"></span></button>
@@ -44,7 +52,7 @@
 					</div>
 					<div class="col-md-4">
 						<fieldset>
-							<legend>Restrições</legend>
+							<legend><translate trans="constraints">Restrições</translate></legend>
 							<div class="col-md-6">
 								<p>
 									<button id="add_line_btn" class="btn btn-info btn-block"><span class="glyphicon glyphicon-plus"></button>
@@ -60,10 +68,10 @@
 					<div class="col-md-4">
 						<div class="row">
 							<div class="col-md-6"><p><button id="calculate_simplex_btn" class="btn btn-info btn-block">
-								Resolver
+								<translate trans="solve_lpp">Resolver</translate>
 							</button></p></div>
 							<div class="col-md-6"><p><button id="clear_solutions_btn" class="btn btn-info btn-block">
-								Limpar Soluções
+								<translate trans="clear_solutions">Limpar solução</translate>
 							</button></p></div>
 						</div>
 						<div id="solve_msg" class="row"></div>
@@ -72,18 +80,18 @@
 				<div class="row">
 					<div class="row">
 						<div class="page-header">
-							<h3>Problema de programação linear</h3>
+							<h3><translate trans="lpp">Problema de programação linear</translate></h3>
 						</div>
 					</div>
 					<div class="row panel panel-info">
 						<div class="panel-heading toggler" data-target="#function">
-							<h4 class="panel-title">Função</h4>
+							<h4 class="panel-title"><translate trans="function">Função</translate></h4>
 						</div>
 						<div id="function" class="panel-body toggler-target">
 							<div class="col-md-2">
 								<table class="table">
 									<tr>
-										<th>Tipo</th>
+										<th><translate trans="type">Tipo</translate></th>
 									</tr>
 									<tr>
 										<td>
@@ -107,7 +115,7 @@
 					</div>
 					<div class="row panel panel-info">
 						<div class="panel-heading toggler" data-target="#constraints_body">
-							<h4 class="panel-title">Restrições</h4>
+							<h4 class="panel-title"><translate trans="constraints">Restrições</translate></h4>
 						</div>
 						<div id="constraints_body" class="panel-body toggler-target">
 							<div class="col-md-12">
@@ -125,7 +133,7 @@
 					<div class="row">
 						<div id="solution_head" class="">
 							<div class="page-header">
-								<h3>Soluções</h3>
+								<h3><translate trans="solutions">Soluções</translate></h3>
 							</div>
 						</div>
 					</div>
@@ -136,7 +144,7 @@
 						</div>
 						<div class="row">
 							<div class="col-md-2">
-								<p><button id="next_solution" class="btn btn-info">Proxima Solução</button></p>
+								<p><button id="next_solution" class="btn btn-info"><translate trans="next_solution">Proxima solução</translate></button></p>
 							</div>
 							<div id="next_solution_msg" class="col-md-10"></div>
 						</div>
@@ -146,7 +154,7 @@
 					<div class="row">
 						<div id="step_head" class="">
 							<div class="page-header">
-								<h3>Passo a Passo</h3>
+								<h3><translate trans="step_by_step">Passo a passo</translate></h3>
 							</div>
 						</div>
 					</div>
@@ -155,7 +163,7 @@
 						</div>
 						<div class="row">
 							<div class="col-md-2">
-								<p><button id="next_step" class="btn btn-info">Próxima Etapa</button></p>
+								<p><button id="next_step" class="btn btn-info"><translate trans="next_step">Proxima etapa</translate></button></p>
 							</div>
 							<div id="next_step_msg" class="col-md-10"></div>
 						</div>
@@ -169,6 +177,7 @@
 		<script src="simplex.js"></script>
 		<script src="graphic-manager.js"></script>
 		<script src="data-manager.js"></script>
+		<script src="languages.js"></script>
 		<script src="events.js"></script>
 	</body>
 </html>
